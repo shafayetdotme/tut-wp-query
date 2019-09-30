@@ -126,9 +126,12 @@ $args = array(
      * Search Parameters - Show posts based on a keyword search.
      * https://developer.wordpress.org/reference/classes/wp_query/#search-parameters
      */
-    's' => $s,            //(string) - Passes along the query string variable from a search. For example usage see: http://www.wprecipes.com/how-to-display-the-number-of-results-in-wordpress-search 
-    'exact' => true,      //(bool) - flag to make it only match whole titles/posts - Default value is false. For more information see: https://gist.github.com/2023628#gistcomment-285118
-    'sentence' => true,   //(bool) - flag to make it do a phrase search - Default value is false. For more information see: https://gist.github.com/2023628#gistcomment-285118
+    's' => $s,          //(string) - Passes along the query string variable from a search. 
+                        // For example usage see: http://www.wprecipes.com/how-to-display-the-number-of-results-in-wordpress-search 
+    'exact' => true,    //(bool) - flag to make it only match whole titles/posts - Default value is false. For more information see:
+                        // https://gist.github.com/2023628#gistcomment-285118
+    'sentence' => true, //(bool) - flag to make it do a phrase search - Default value is false. For more information see:
+                        // https://gist.github.com/2023628#gistcomment-285118
 
 
 
@@ -143,7 +146,8 @@ $args = array(
     'name' => 'hello-world',                //(string) - use post slug.
     'page_id' => 1,                         //(int) - use page id.
     'pagename' => 'sample-page',            //(string) - use page slug.
-    'pagename' => 'contact_us/canada',      //(string) - Display child page using the slug of the parent and the child page, separated ba slash
+    'pagename' => 'contact_us/canada',      //(string) - Display child page using the slug of the parent and the child page, 
+                                            // separated ba slash
     'post_parent' => 1,                     //(int) - use page id. Return just the child Pages. (Only works with heirachical post types.)
     'post_parent__in' => array(1,2,3),      //(array) - use post ids. Specify posts whose parent is in an array. NOTE: Introduced in 3.6 
     'post_parent__not_in' => array(1,2,3),  //(array) - use post ids. Specify posts whose parent is not in an array.
@@ -179,7 +183,7 @@ $args = array(
      * Post Type Parameters - Show posts associated with certain type.
      * https://developer.wordpress.org/reference/classes/wp_query/#post-type-parameters
      */
-    'post_type' => array(       //(string / array) - use post types. Retrieves posts by Post Types, default value is 'post';
+    'post_type' => array(   //(string / array) - use post types. Retrieves posts by Post Types, default value is 'post';
         'post',             // - a post.
         'page',             // - a page.
         'revision',         // - a revision.
@@ -218,10 +222,14 @@ $args = array(
      * Pagination Parameters
      * https://developer.wordpress.org/reference/classes/wp_query/#pagination-parameters
      */
-    'nopaging'              => true,       // (boolean) – show all posts or use pagination. Default value is ‘false’, use paging.
-    'posts_per_page'        => 10,         // (int) - number of post to show per page (available with Version 2.1). Use 'posts_per_page'=1 to show all posts (the 'offset' parameter is ignored with a -1 value). Note if the query is in a feed, wordpress overwrites this parameter with the stored 'posts_per_rss' option. Treimpose the limit, try using the 'post_limits' filter, or filter 'pre_option_posts_per_rss' and return -1
-    'posts_per_archive_page'=> 10,         // (int) - number of posts to show per page - on archive pages only. Over-rides showposts anposts_per_page on pages where is_archive() or is_search() would be true
-    'nopaging'              => false,      // (bool) - show all posts or use pagination. Default value is 'false', use paging.
+    'nopaging'              => true,    // (boolean) – show all posts or use pagination. Default value is ‘false’, use paging.
+    'posts_per_page'        => 10,      // (int) - number of post to show per page (available with Version 2.1). Use 'posts_per_page'=1 
+                                        //to show all posts (the 'offset' parameter is ignored with a -1 value). Note if the query is in 
+                                        // a feed, wordpress overwrites this parameter with the stored 'posts_per_rss' option. Treimpose
+                                        // the limit, try using the 'post_limits' filter, or filter 'pre_option_posts_per_rss' and return -1
+    'posts_per_archive_page'=> 10,      // (int) - number of posts to show per page - on archive pages only. Over-rides showposts
+                                        // anposts_per_page on pages where is_archive() or is_search() would be true
+    'nopaging'              => false,   // (bool) - show all posts or use pagination. Default value is 'false', use paging.
     'paged'                 => get_query_var('paged'), //(int) - number of page. Show the posts that would normally show up just on page X when usinthe "Older Entries" link.
                                             //NOTE: Use get_query_var('page'); if you want your query to work in a Page template that you've set as your static front page. The query variable 'page' holds the pagenumber for a single paginated Post or Page that includes the <!--nextpage--> Quicktag in the post content.
                                             // This whole paging thing gets tricky. Some links to help you out:
