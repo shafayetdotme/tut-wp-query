@@ -97,13 +97,17 @@ $args = array(
      * array to describe the boolean relationship between the taxonomy arrays.
      */
     'tax_query' => array(  //(array) - use taxonomy parameters (available with Version 3.1).
-        'relation'  => 'AND',   //(string) -  The logical relationship between each inner taxonomy array when there is more than one. Possible values are 'AND', 'OR'.
+        'relation'  => 'AND',   //(string) -  The logical relationship between each inner taxonomy array when there is more than one.
+                                // Possible values are 'AND', 'OR'.
         array(
             'taxonomy'          => 'color',                 //(string) - Taxonomy.
-            'field'             => 'slug',                  //(string) - Select taxonomy term by ('term_id' - default | 'name' | 'slug' | 'term_taxonomy_id')
+            'field'             => 'slug',                  //(string) - Select taxonomy term by ('term_id' - default | 'name' | 
+                                                            // 'slug' | 'term_taxonomy_id')
             'terms'             => array( 'red', 'blue' ),  //(int/string/array) - Taxonomy term(s).
-            'include_children'  => true,                    //(bool) - Whether or not to include children for hierarchical taxonomies. Defaults to true.
-            'operator'          => 'IN'                     //(string) - Operator to test. Possible values are ‘IN’, ‘NOT IN’, ‘AND’, ‘EXISTS’ and ‘NOT EXISTS’.
+            'include_children'  => true,                    //(bool) - Whether or not to include children for hierarchical taxonomies.
+                                                            // Defaults to true.
+            'operator'          => 'IN'                     //(string) - Operator to test. Possible values are ‘IN’, ‘NOT IN’, ‘AND’, 
+                                                            // ‘EXISTS’ and ‘NOT EXISTS’.
                                                             // Default value is 'IN'.
         ),
         array(
