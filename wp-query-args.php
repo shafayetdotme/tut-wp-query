@@ -7,8 +7,31 @@
 * CODEX: https://developer.wordpress.org/reference/classes/wp_query/#parameters
 * Source: https://core.trac.wordpress.org/browser/tags/5.2/src/wp-includes/class-wp-query.php#L18
 */
+
+/**
+ * -- Parameters --
+ * 01. Author Parameters
+ * 02. Category Parameters
+ * 03. Tag Parameters
+ * 04. Taxonomy Parameters
+ * 05. Search Parameters
+ * 06. Post & Page Parameters
+ * 07. Password Parameters
+ * 08. Post Type Parameters
+ * 09. Order & Orderby Parameters
+ * 10. Date Parameters
+ * 11. Custom Field (post meta) Parameters
+ * 12. Permission Parameters
+ * 13. Mime Type Parameters
+ * 14. Caching Parameters
+ * 15. Return Fields Parameter
+ */
+
 $args = array(
+    
     /**
+     * ================== 01 ==================
+     * 
      * Author Parameters - Show posts associated with certain author.
      * https://developer.wordpress.org/reference/classes/wp_query/#author-parameters
      * */
@@ -31,9 +54,11 @@ $args = array(
 
     # 06. You can also exclude multiple author this way: (Multiple Author Handling)
     'author__not_in'    => array( 2, 6 ),   //(array)' - use author id (available with Version 3.7).
-  
+
+
 
     /**
+     * ================== 02 ==================
      * Category Parameters - Show posts associated with certain categories.
      * https://developer.wordpress.org/reference/classes/wp_query/#category-parameters
      */
@@ -43,10 +68,11 @@ $args = array(
     'category__and' => array( 2, 6 ),         //(array) - use category id.
     'category__in' => array( 2, 6 ),          //(array) - use category id.
     'category__not_in' => array( 2, 6 ),      //(array) - use category id.
-     
+
 
 
     /**
+     * ================== 03 ==================
      * Tag Parameters - Show posts associated with certain tags.
      * https://developer.wordpress.org/reference/classes/wp_query/#tag-parameters
      */
@@ -59,7 +85,9 @@ $args = array(
     'tag_slug__in' => array( 'red', 'blue'),  //(array) - use tag slugs.
 
 
+
     /**
+     * ================== 04 ==================
      * Taxonomy Parameters - Show posts associated with certain taxonomy.
      * https://developer.wordpress.org/reference/classes/wp_query/#taxonomy-parameters
      * 
@@ -87,7 +115,21 @@ $args = array(
         )
     ),
 
+
+
     /**
+     * * ================== 05 ==================
+     * Search Parameters - Show posts based on a keyword search.
+     * https://developer.wordpress.org/reference/classes/wp_query/#search-parameters
+     */
+    's' => $s,            //(string) - Passes along the query string variable from a search. For example usage see: http://www.wprecipes.com/how-to-display-the-number-of-results-in-wordpress-search 
+    'exact' => true,      //(bool) - flag to make it only match whole titles/posts - Default value is false. For more information see: https://gist.github.com/2023628#gistcomment-285118
+    'sentence' => true,   //(bool) - flag to make it do a phrase search - Default value is false. For more information see: https://gist.github.com/2023628#gistcomment-285118
+
+
+
+    /**
+     * * ================== 06 ==================
      * Post & Page Parameters - Display content based on post and page parameters.
      * Remember that default post_type is only set to display posts but not pages.
      * https://developer.wordpress.org/reference/classes/wp_query/#post-page-parameters
@@ -109,7 +151,9 @@ $args = array(
     //NOTE: you cannot combine 'post__in' and 'post__not_in' in the same query
 
 
+
     /**
+     * * ================== 07 ==================
      * Password Parameters - Show content based on post and page parameters.
      * Remember that default post_type is only set to display posts but not pages.
      * https://developer.wordpress.org/reference/classes/wp_query/#password-parameters
@@ -127,6 +171,7 @@ $args = array(
 
 
     /**
+     * ================== 08 ==================
      * Post Type Parameters - Show posts associated with certain type.
      * https://developer.wordpress.org/reference/classes/wp_query/#post-type-parameters
      */
@@ -142,7 +187,8 @@ $args = array(
     ),
     # -- OR --
     # NOTE: The 'any' keyword available to both post_type and post_status queries cannot be used within an array. 
-    'post_type' => 'any',   // - retrieves any type except revisions and types with 'exclude_from_search' set to true.  
+    'post_type' => 'any',   // - retrieves any type except revisions and types with 'exclude_from_search' set to true.
+
 
 
     /**
@@ -164,7 +210,6 @@ $args = array(
     'post_status' => 'any',  // - retrieves any status except those from post types with 'exclude_from_search' set to true.
 
 
-    
     /**
      * Pagination Parameters
      * https://developer.wordpress.org/reference/classes/wp_query/#pagination-parameters
@@ -188,7 +233,9 @@ $args = array(
     'ignore_sticky_posts' => false,         // (boolean) - ignore sticky posts or not (available with Version 3.1, replaced caller_get_posts parameter). Default value is 0 - don't ignore sticky posts. Note: ignore/exclude sticky posts being included at the beginning of posts returned, but the sticky post will still be returned in the natural order of that list of posts returned.
 
 
+
     /**
+     * ================== 09 ==================
      * Order & Orderby Parameters - Sort retrieved posts.
      * https://developer.wordpress.org/reference/classes/wp_query/#order-orderby-parameters
      */
@@ -213,7 +260,11 @@ $args = array(
                                               //'meta_value_num' - Order by numeric meta value (available with Version 2.8). Also notthat a 'meta_key=keyname' must also be present in the query. This value allows for numericasorting as noted above in 'meta_value'.
                                               //'title menu_order' - Order by both menu_order AND title at the same time. For more info see: http://wordpress.stackexchange.com/questions/2969/order-by-menu-order-and-title
                                               //'post__in' - Preserve post ID order given in the post__in array (available with Version 3.5)
+
+
+
     /**
+     * ================== 10 ==================
      * Date Parameters - Show posts associated with a certain time and date period.
      * https://developer.wordpress.org/reference/classes/wp_query/#date-parameters
      */
@@ -238,19 +289,22 @@ $args = array(
             'second'    => 36,                  //(int) - Second (0 to 59).
             'after'     => 'January 1st, 2013', //(string/array) - Date to retrieve posts after. Accepts strtotime()-compatible string, or array of 'year', 'month', 'day'
             'before'    => array(               //(string/array) - Date to retrieve posts after. Accepts strtotime()-compatible string, or array of 'year', 'month', 'day'
-            'year'      => 2013,                //(string) Accepts any four-digit year. Default is empty.
-            'month'     => 2,                   //(string) The month of the year. Accepts numbers 1-12. Default: 12.
-            'day'       => 28,                  //(string) The day of the month. Accepts numbers 1-31. Default: last day of month.
-        ),
-        'inclusive' => true,        //(boolean) - For after/before, whether exact value should be matched or not'.
-        'compare'   =>  '=',        //(string) - Possible values are '=', '!=', '>', '>=', '<', '<=', 'LIKE', 'NOT LIKE', 'IN', 'NOT IN',
+                'year'      => 2013,                //(string) Accepts any four-digit year. Default is empty.
+                'month'     => 2,                   //(string) The month of the year. Accepts numbers 1-12. Default: 12.
+                'day'       => 28,                  //(string) The day of the month. Accepts numbers 1-31. Default: last day of month.
+            ), // before
+            'inclusive' => true,        //(boolean) - For after/before, whether exact value should be matched or not'.
+            'compare'   =>  '=',        //(string) - Possible values are '=', '!=', '>', '>=', '<', '<=', 'LIKE', 'NOT LIKE', 'IN', 'NOT IN',
                                     // 'BETWEEN', 'NOT BETWEEN', 'EXISTS' (only in WP >= 3.5), and 'NOT EXISTS' (also only in WP >= 3.5). Default value is '='
-        'column'    => 'post_date', //(string) - Column to query against. Default: 'post_date'.
-        'relation'  => 'AND',       //(string) - OR or AND, how the sub-arrays should be compared. Default: AND.
-      ),
-    ),
+            'column'    => 'post_date', //(string) - Column to query against. Default: 'post_date'.
+            'relation'  => 'AND',       //(string) - OR or AND, how the sub-arrays should be compared. Default: AND.
+        ),
+    ), // date_query
+
+
 
     /**
+     * ================== 11 ==================
      * Custom Field (post meta) Parameters - Show posts associated with a certain custom field.
      * https://developer.wordpress.org/reference/classes/wp_query/#custom-field-post-meta-parameters
      */
@@ -280,7 +334,10 @@ $args = array(
         )
     ), 
 
+
+
     /**
+     * ================== 12 ==================
      * Permission Parameters - Show posts if user has the appropriate capability
      * https://developer.wordpress.org/reference/classes/wp_query/#permission-parameters
      *  
@@ -289,7 +346,19 @@ $args = array(
     'perm' => 'readable',    //(string) Possible values are 'readable', 'editable'
 
 
+
     /**
+     * ================== 13 ==================
+     * Mime Type Parameters - Used with the attachments post type.
+     * https://developer.wordpress.org/reference/classes/wp_query/#mime-type-parameters
+     */
+    'post_mime_type' =>  'image/gif', // (string/array) – Allowed mime types. 'image/jpeg', 'image/gif', 'image/png', 'image/bmp', 'image/tiff', 'image/x-icon'
+     # Note:  To exclude certain mime types you first need to get all mime types using get_allowed_mime_types() and run a difference between arrays of what you want and the allowed mime types with array_diff().
+
+
+
+    /**
+     * ================== 14 ==================
      * Caching Parameters - Stop the data retrieved from being added to the cache.
      * https://developer.wordpress.org/reference/classes/wp_query/#caching-parameters
      */
@@ -303,15 +372,9 @@ $args = array(
                                             // For more information see: http://flavio.tordini.org/speed-up-wordpress-get_posts-and-query_posts-functions
     
 
-    /**
-     * Search Parameters - Show posts based on a keyword search.
-     * https://developer.wordpress.org/reference/classes/wp_query/#search-parameters
-     */
-    's' => $s,            //(string) - Passes along the query string variable from a search. For example usage see: http://www.wprecipes.com/how-to-display-the-number-of-results-in-wordpress-search 
-    'exact' => true,      //(bool) - flag to make it only match whole titles/posts - Default value is false. For more information see: https://gist.github.com/2023628#gistcomment-285118
-    'sentence' => true,   //(bool) - flag to make it do a phrase search - Default value is false. For more information see: https://gist.github.com/2023628#gistcomment-285118
 
     /**
+     * ================== 15 ==================
      * Return Fields Parameter - Set return values.
      * https://developer.wordpress.org/reference/classes/wp_query/#return-fields-parameter
      * https://gist.github.com/luetkemj/2023628/#comment-1003542
@@ -320,14 +383,8 @@ $args = array(
                                               //Possible values: 
                                               //'ids'        - Return an array of post IDs. 
                                               //'id=>parent' - Return an associative array [ parent => ID, тАж ].
-                                              //Passing anything else will return all fields (default) - an array of post objects.            
+                                              //Passing anything else will return all fields (default) - an array of post objects.
 
-    /**
-     * Mime Type Parameters - Used with the attachments post type.
-     * https://developer.wordpress.org/reference/classes/wp_query/#mime-type-parameters
-     */
-    'post_mime_type' =>  'image/gif', // (string/array) – Allowed mime types. 'image/jpeg', 'image/gif', 'image/png', 'image/bmp', 'image/tiff', 'image/x-icon'
-     # Note:  To exclude certain mime types you first need to get all mime types using get_allowed_mime_types() and run a difference between arrays of what you want and the allowed mime types with array_diff().
 
 );
 
