@@ -100,7 +100,7 @@ $args = array(
         'relation'  => 'AND',   //(string) -  The logical relationship between each inner taxonomy array when there is more than one.
                                 // Possible values are 'AND', 'OR'.
         array(
-            'taxonomy'          => 'color',                 //(string) - Taxonomy.
+            'taxonomy'          => 'color',                 // (string) - 'category' or 'post_tag' or 'custom_taxonomy' Custom Taxonomy
             'field'             => 'slug',                  //(string) - Select taxonomy term by ('term_id' - default | 'name' | 
                                                             // 'slug' | 'term_taxonomy_id')
             'terms'             => array( 'red', 'blue' ),  //(int/string/array) - Taxonomy term(s).
