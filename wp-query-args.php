@@ -254,18 +254,24 @@ $args = array(
      * Custom Field (post meta) Parameters - Show posts associated with a certain custom field.
      * https://developer.wordpress.org/reference/classes/wp_query/#custom-field-post-meta-parameters
      */
-    'meta_key'      => 'key',                    //(string) - Custom field key.
-    'meta_value'    => 'value',                //(string) - Custom field value.
-    'meta_value_num'=> 10,                 //(number) - Custom field value.
-    'meta_compare'  => '=',                  //(string) - Operator to test the 'meta_value'. Possible values are '!=', '>', '>=', '<', or ='. Default value is '='.
-    'meta_query'    => array(                  //(array) - Custom field parameters (available with Version 3.1).
-        'relation'   => 'AND',                 //(string) - Possible values are 'AND', 'OR'. The logical relationship between each inner meta_query array when there is more than one. Do not use with a single inner meta_query array.
+    'meta_key'      => 'key',         //(string) - Custom field key.
+    'meta_value'    => 'value',       //(string) - Custom field value.
+    'meta_value_num'=> 10,            //(number) - Custom field value.
+    'meta_compare'  => '=',           //(string) - Operator to test the 'meta_value'. Possible values are '!=', '>', '>=', '<', or ='. Default value is '='.
+    'meta_query'    => array(         //(array) - Custom field parameters (available with Version 3.1).
+        'relation'   => 'AND',        //(string) - Possible values are 'AND', 'OR'. The logical relationship between each inner meta_query array when there 
+                                      // is more than one. Do not use with a single inner meta_query array.
         array(
-            'key'       => 'color',                  //(string) - Custom field key.
-            'value'     => 'blue',                  //(string/array) - Custom field value (Note: Array support is limited to a compare value of 'IN', 'NOT IN', 'BETWEEN', or 'NOT BETWEEN') Using WP < 3.9? Check out this page for details: http://codex.wordpress.org/Class_Reference/WP_Query#Custom_Field_Parameters
-            'type'      => 'CHAR',                  //(string) - Custom field type. Possible values are 'NUMERIC', 'BINARY', 'CHAR', 'DATE', 'DATETIME', 'DECIMAL', 'SIGNED', 'TIME', 'UNSIGNED'. Default value is 'CHAR'. The 'type' DATE works with the 'compare' value BETWEEN only if the date is stored at the format YYYYMMDD and tested with this format.
-                                            //NOTE: The 'type' DATE works with the 'compare' value BETWEEN only if the date is stored at the format YYYYMMDD and tested with this format.
-            'compare'   => '='                   //(string) - Operator to test. Possible values are '=', '!=', '>', '>=', '<', '<=', 'LIKE', 'NOT LIKE', 'IN', 'NOT IN', 'BETWEEN', 'NOT BETWEEN', 'EXISTS' (only in WP >= 3.5), and 'NOT EXISTS' (also only in WP >= 3.5). Default value is '='.
+            'key'       => 'color',   //(string) - Custom field key.
+            'value'     => 'blue',    //(string/array) - Custom field value (Note: Array support is limited to a compare value of 'IN', 'NOT IN', 'BETWEEN'
+                                      // or 'NOT BETWEEN') Using WP < 3.9? Check out this page for details: 
+                                      // http://codex.wordpress.org/Class_Reference/WP_Query#Custom_Field_Parameters
+            'type'      => 'CHAR',    //(string) - Custom field type. Possible values are 'NUMERIC', 'BINARY', 'CHAR', 'DATE', 'DATETIME', 'DECIMAL', 'SIGNED',
+                                      // 'TIME', 'UNSIGNED'. Default value is 'CHAR'. The 'type' DATE works with the 'compare' value BETWEEN only if the date is 
+                                      // stored at the format YYYYMMDD and tested with this format.
+                                      //NOTE: The 'type' DATE works with the 'compare' value BETWEEN only if the date is stored at the format YYYYMMDD and tested with this format.
+            'compare'   => '='        //(string) - Operator to test. Possible values are '=', '!=', '>', '>=', '<', '<=', 'LIKE', 'NOT LIKE', 'IN', 'NOT IN', 'BETWEEN',
+                                      // 'NOT BETWEEN', 'EXISTS' (only in WP >= 3.5), and 'NOT EXISTS' (also only in WP >= 3.5). Default value is '='.
         ),
         array(
             'key'       => 'price',
@@ -291,7 +297,10 @@ $args = array(
     'cache_results' => true,                //(bool) Default is true - Post information cache.
     'update_post_term_cache' => true,       //(bool) Default is true - Post meta information cache.
     'update_post_meta_cache' => true,       //(bool) Default is true - Post term information cache.
-    'no_found_rows' => false,               //(bool) Default is false. WordPress uses SQL_CALC_FOUND_ROWS in most queries in order to implement pagination. Even when you donтАЩt need pagination at all. By Setting this parameter to true you are telling wordPress not to count the total rows and reducing load on the DB. Pagination will NOT WORK when this parameter is set to true. For more information see: http://flavio.tordini.org/speed-up-wordpress-get_posts-and-query_posts-functions
+    'no_found_rows' => false,               //(bool) Default is false. WordPress uses SQL_CALC_FOUND_ROWS in most queries in order to implement pagination.
+                                            // Even when you donтАЩt need pagination at all. By Setting this parameter to true you are telling wordPress not
+                                            // to count the total rows and reducing load on the DB. Pagination will NOT WORK when this parameter is set to true.
+                                            // For more information see: http://flavio.tordini.org/speed-up-wordpress-get_posts-and-query_posts-functions
     
 
     /**
@@ -313,7 +322,12 @@ $args = array(
                                               //'id=>parent' - Return an associative array [ parent => ID, тАж ].
                                               //Passing anything else will return all fields (default) - an array of post objects.            
 
-
+    /**
+     * Mime Type Parameters - Used with the attachments post type.
+     * https://developer.wordpress.org/reference/classes/wp_query/#mime-type-parameters
+     */
+    'post_mime_type' =>  'image/gif', // (string/array) – Allowed mime types. 'image/jpeg', 'image/gif', 'image/png', 'image/bmp', 'image/tiff', 'image/x-icon'
+     # Note:  To exclude certain mime types you first need to get all mime types using get_allowed_mime_types() and run a difference between arrays of what you want and the allowed mime types with array_diff().
 
 );
 
